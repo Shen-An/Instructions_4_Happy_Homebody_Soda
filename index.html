@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Happy Homebody Soda authorized tester guide">
+    <title>Happy Homebody Soda | 使用指南</title>
+    <style>
+      :root { --ink:#12232c; --muted:#587079; --paper:#f7fbfa; --line:#dce9e7; --panel:#fff; --accent:#00746f; --accent-pale:#e4f5f1; --warning:#795b08; --warning-bg:#fff8df; --shadow:0 18px 50px rgba(23,67,64,.10); }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { margin:0; background:var(--paper); color:var(--ink); font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif; line-height:1.6; }
+      a { color:inherit; text-decoration:none; }
+      button { font:inherit; }
+      .wrap { width:min(1180px,calc(100% - 40px)); margin:auto; }
+      .lang { display:none; }
+      html[lang="zh-CN"] .zh, html[lang="en"] .en { display:initial; }
+      html[lang="zh-CN"] .zh.flex, html[lang="en"] .en.flex { display:flex; }
+      html[lang="zh-CN"] .zh.grid, html[lang="en"] .en.grid { display:grid; }
+      .site-header { position:sticky; z-index:5; top:0; background:rgba(247,251,250,.92); border-bottom:1px solid var(--line); backdrop-filter:blur(16px); }
+      .nav { min-height:70px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+      .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:0; white-space:nowrap; }
+      .brand-mark { width:31px; height:31px; border-radius:9px; display:grid; place-items:center; color:#fff; background:var(--accent); font-weight:900; }
+      .brand small { display:block; font-weight:600; color:var(--muted); font-size:11px; line-height:1.1; letter-spacing:.04em; }
+      .nav-links { display:flex; align-items:center; gap:21px; color:var(--muted); font-size:14px; }
+      .nav-links a:hover { color:var(--accent); }
+      .language { border:1px solid var(--line); padding:7px 12px; border-radius:8px; color:var(--accent); background:#fff; font-size:13px; cursor:pointer; }
+      .language:hover { border-color:var(--accent); }
+      .hero { background:linear-gradient(112deg,#f7fbfa 0%,#e5f6f2 47%,#f6fbfa 100%); padding:78px 0 68px; overflow:hidden; }
+      .hero-grid { display:grid; grid-template-columns:1fr .88fr; align-items:center; gap:58px; }
+      .eyebrow { margin:0 0 14px; color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+      h1 { max-width:650px; margin:0; font-size:clamp(40px,5vw,72px); letter-spacing:0; line-height:1.06; }
+      .hero-copy { max-width:610px; margin:21px 0 27px; font-size:18px; color:#405963; }
+      .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+      .button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 17px; border:1px solid var(--accent); border-radius:8px; font-weight:700; cursor:pointer; transition:transform .18s ease,background .18s ease; }
+      .button:active { transform:translateY(1px); }
+      .button.primary { background:var(--accent); color:#fff; }
+      .button.primary:hover { background:#005f5b; }
+      .button.secondary { background:transparent; color:var(--accent); }
+      .button.secondary:hover { background:rgba(255,255,255,.7); }
+      .hero-media { position:relative; }
+      .hero-media:before { content:""; position:absolute; width:150px; height:150px; top:-34px; right:-32px; background:#b8ebe1; border-radius:50%; z-index:0; }
+      .screen { position:relative; z-index:1; margin:0; background:#fff; border:1px solid #d8e9e5; border-radius:12px; overflow:hidden; box-shadow:var(--shadow); }
+      .screen img { display:block; width:100%; height:auto; }
+      .screen figcaption { padding:12px 15px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
+      section { padding:88px 0; }
+      .section-heading { max-width:720px; margin-bottom:36px; }
+      h2 { margin:0; font-size:clamp(29px,3.6vw,45px); line-height:1.16; letter-spacing:0; }
+      .section-heading p { margin:14px 0 0; color:var(--muted); font-size:17px; }
+      .notice { display:grid; grid-template-columns:auto 1fr; gap:16px; padding:25px; border:1px solid #eadcab; border-radius:12px; background:var(--warning-bg); }
+      .notice-badge { width:34px; height:34px; display:grid; place-items:center; border-radius:50%; background:#f6e7a7; color:var(--warning); font-weight:900; }
+      .notice h3 { margin:0 0 6px; font-size:17px; }
+      .notice p { margin:0; color:#5c542e; }
+      .process { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+      .process-step { border-top:2px solid var(--accent); padding:18px 6px 0 0; }
+      .step-number { color:var(--accent); font-weight:800; font-size:13px; letter-spacing:.08em; }
+      .process h3 { margin:8px 0 6px; font-size:20px; }
+      .process p { margin:0; color:var(--muted); }
+      .walkthrough { background:#eef7f5; }
+      .steps { display:grid; gap:40px; }
+      .step { display:grid; grid-template-columns:.82fr 1.18fr; gap:42px; align-items:center; }
+      .step:nth-child(even) { grid-template-columns:1.18fr .82fr; }
+      .step:nth-child(even) .step-copy { order:2; }
+      .step:nth-child(even) .screen { order:1; }
+      .step-index { color:var(--accent); font-size:13px; font-weight:800; letter-spacing:.1em; }
+      .step h3 { margin:9px 0 11px; font-size:28px; line-height:1.2; }
+      .step p { margin:0; color:var(--muted); font-size:16px; }
+      .tip { margin-top:17px; padding-left:15px; border-left:3px solid var(--accent); color:#335760; font-size:14px; }
+      .models { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+      .model { padding:23px 25px 24px; border-right:1px solid var(--line); }
+      .model:last-child { border-right:0; }
+      .model h3 { margin:0; font-size:22px; }
+      .model .role { margin:3px 0 15px; color:var(--accent); font-size:13px; font-weight:700; }
+      .model p { margin:0; color:var(--muted); font-size:14px; }
+      .price-table { width:100%; border-collapse:collapse; margin-top:38px; font-size:14px; }
+      .price-table th, .price-table td { text-align:left; padding:14px 12px; border-bottom:1px solid var(--line); }
+      .price-table th { color:var(--muted); font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
+      .price-table td:last-child, .price-table th:last-child { text-align:right; }
+      .pricing-note { margin:18px 0 0; color:var(--muted); font-size:13px; }
+      .status-layout { display:grid; grid-template-columns:.9fr 1.1fr; align-items:center; gap:52px; }
+      .legend { display:grid; gap:14px; }
+      .legend-row { display:flex; align-items:flex-start; gap:14px; padding:15px 0; border-bottom:1px solid var(--line); }
+      .indicator { flex:0 0 12px; width:12px; height:12px; margin-top:6px; border-radius:50%; background:#1aaf83; box-shadow:0 0 0 4px #d8f5e9; }
+      .indicator.warn { background:#d99d16; box-shadow:0 0 0 4px #fff0cd; }
+      .indicator.down { background:#d55656; box-shadow:0 0 0 4px #ffe3e3; }
+      .legend h3 { margin:0; font-size:17px; }
+      .legend p { margin:2px 0 0; color:var(--muted); font-size:14px; }
+      .faq { border-top:1px solid var(--line); }
+      details { border-bottom:1px solid var(--line); padding:0; }
+      summary { list-style:none; cursor:pointer; padding:20px 34px 20px 0; position:relative; font-weight:750; }
+      summary::-webkit-details-marker { display:none; }
+      summary:after { content:"+"; position:absolute; right:5px; color:var(--accent); font-size:23px; font-weight:400; line-height:1; }
+      details[open] summary:after { content:"−"; }
+      details p { max-width:780px; margin:0 0 20px; color:var(--muted); }
+      .footer { background:#102e31; color:#d4e5e4; padding:34px 0; }
+      .footer-row { display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:13px; }
+      .footer a { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+      @media (max-width:800px) { .nav-links { display:none; } .hero { padding:52px 0; } .hero-grid, .status-layout { grid-template-columns:1fr; gap:34px; } .hero-media { max-width:620px; } section { padding:64px 0; } .process, .models { grid-template-columns:1fr; } .model { border-right:0; border-bottom:1px solid var(--line); } .model:last-child { border-bottom:0; } .step, .step:nth-child(even) { grid-template-columns:1fr; gap:22px; } .step:nth-child(even) .step-copy, .step:nth-child(even) .screen { order:initial; } .price-table { font-size:12px; } .price-table th, .price-table td { padding:10px 5px; } }
+      @media (max-width:480px) { .wrap { width:min(100% - 28px,1180px); } h1 { font-size:42px; } .hero-copy { font-size:16px; } .hero-actions .button { width:100%; } .notice { padding:18px; } .footer-row { align-items:flex-start; flex-direction:column; } }
+      @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Happy Homebody Soda">
+          <span class="brand-mark">H</span>
+          <span>Happy Homebody Soda<small>快乐肥宅水</small></span>
+        </a>
+        <div class="nav-links zh flex"><a href="#guide">使用方法</a><a href="#models">模型与价格</a><a href="#status">通道状态</a><a href="#faq">FAQ</a></div>
+        <div class="nav-links en flex"><a href="#guide">Guide</a><a href="#models">Models & pricing</a><a href="#status">Channel status</a><a href="#faq">FAQ</a></div>
+        <button class="language" type="button" id="language-toggle" aria-label="Switch language">EN</button>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="eyebrow zh">授权测试用户指南</p><p class="eyebrow en">Authorized tester guide</p>
+            <h1 class="zh">让配置更简单，专注完成你的工作。</h1><h1 class="en">A clear path from key creation to your first conversation.</h1>
+            <p class="hero-copy zh">从创建 API 密钥、导入 CC Switch，到选择适合的模型，这里汇总了开始使用所需的全部步骤。</p>
+            <p class="hero-copy en">Create an API key, import it into CC Switch, then choose the model that fits the task. Everything needed to get started is here.</p>
+            <div class="hero-actions zh flex"><a class="button primary" href="#guide">开始配置</a><a class="button secondary" href="#notice">使用须知</a></div>
+            <div class="hero-actions en flex"><a class="button primary" href="#guide">Start setup</a><a class="button secondary" href="#notice">Usage notice</a></div>
+          </div>
+          <figure class="screen hero-media"><img src="assets/chrome.exe_20260808_211550.png" alt="API 密钥页面截图"><figcaption class="zh">在密钥页面创建并管理你的 API Key</figcaption><figcaption class="en">Create and manage API keys from the key page</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="notice"><div class="wrap"><div class="notice zh"><div class="notice-badge">!</div><div><h3>仅限内部授权测试</h3><p>自 2026 年 8 月 6 日 12:00 EDT 起，平台停止面向中国大陆、香港及澳门地区提供访问。仅向海外地区的授权测试用户开放。加入测试请发送邮件至 <a href="mailto:dzhg@dzhg3.cc.cd">dzhg@dzhg3.cc.cd</a> 并说明来意。</p></div></div><div class="notice en"><div class="notice-badge">!</div><div><h3>Authorized internal testing only</h3><p>From 12:00 PM EDT on August 6, 2026, access from mainland China, Hong Kong, and Macao is discontinued. The platform is available only to authorized overseas testers. To join, email <a href="mailto:dzhg@dzhg3.cc.cd">dzhg@dzhg3.cc.cd</a> with your purpose.</p></div></div></div></section>
+
+      <section id="guide"><div class="wrap"><div class="section-heading"><p class="eyebrow zh">三步完成设置</p><p class="eyebrow en">Three steps</p><h2 class="zh">从密钥到可用配置</h2><h2 class="en">From a key to a working configuration</h2><p class="zh">第一次使用时按以下顺序操作，可以避免常见的导入问题。</p><p class="en">Follow this order the first time to avoid common import issues.</p></div><div class="process zh grid"><div class="process-step"><span class="step-number">01</span><h3>创建密钥</h3><p>设置一个方便辨识的名称，并按需求选择分组。</p></div><div class="process-step"><span class="step-number">02</span><h3>打开 CC Switch</h3><p>建议先启动 CC Switch，再返回密钥列表执行导入。</p></div><div class="process-step"><span class="step-number">03</span><h3>导入并开始使用</h3><p>确认导入信息，在 ChatGPT 中选择匹配任务的模型。</p></div></div><div class="process en grid"><div class="process-step"><span class="step-number">01</span><h3>Create a key</h3><p>Choose any recognizable name and select the group that suits your needs.</p></div><div class="process-step"><span class="step-number">02</span><h3>Open CC Switch</h3><p>Open CC Switch before returning to the key list to import your key.</p></div><div class="process-step"><span class="step-number">03</span><h3>Import and begin</h3><p>Confirm the import details, then select a model in ChatGPT for the task.</p></div></div></div></section>
+
+      <section class="walkthrough"><div class="wrap"><div class="section-heading"><p class="eyebrow zh">操作演示</p><p class="eyebrow en">Walkthrough</p><h2 class="zh">按界面完成每一步</h2><h2 class="en">Follow the interface step by step</h2></div><div class="steps">
+        <article class="step"><div class="step-copy"><div class="step-index zh">步骤 01</div><div class="step-index en">STEP 01</div><h3 class="zh">创建 API 密钥</h3><h3 class="en">Create an API key</h3><p class="zh">进入“API 密钥”，点击“创建密钥”。名称可自由填写，分组代表不同的价格倍率与稳定性。特价组价格最低，但可能出现错误或断连。</p><p class="en">Open API Keys and select Create API Key. The name is up to you. Groups have different prices and stability. The special-price group costs less but may return errors or disconnect.</p><div class="tip zh">按需要选择分组。较高倍率通常意味着更好的稳定性和更高价格。</div><div class="tip en">Select a group for the task. A higher multiplier usually means more stability and a higher price.</div></div><figure class="screen"><img src="assets/chrome.exe_20260808_211713.png" alt="创建密钥窗口"><figcaption class="zh">填写名称并选择分组</figcaption><figcaption class="en">Enter a name and select a group</figcaption></figure></article>
+        <article class="step"><div class="step-copy"><div class="step-index zh">步骤 02</div><div class="step-index en">STEP 02</div><h3 class="zh">导入到 CC Switch</h3><h3 class="en">Import to CC Switch</h3><p class="zh">先打开 CC Switch。回到 API 密钥列表，点击该密钥右侧的“导入到 CCS”，浏览器出现提示时选择打开 CC Switch，然后在确认窗口点击“导入”。</p><p class="en">Open CC Switch first. Return to API Keys, select Import to CCS for the relevant key, allow the browser to open CC Switch, then select Import in the confirmation window.</p></div><figure class="screen"><img src="assets/chrome.exe_20260808_211802.png" alt="导入到 CC Switch 操作截图"><figcaption class="zh">在密钥列表中选择“导入到 CCS”</figcaption><figcaption class="en">Select Import to CCS from the API key list</figcaption></figure></article>
+        <article class="step"><div class="step-copy"><div class="step-index zh">步骤 03</div><div class="step-index en">STEP 03</div><h3 class="zh">确认配置并选择模型</h3><h3 class="en">Confirm configuration and choose a model</h3><p class="zh">导入成功后，CC Switch 中会显示该供应商配置。打开 ChatGPT，看到服务标识即代表配置可用。根据任务复杂度选择模型。</p><p class="en">After a successful import, the provider appears in CC Switch. Open ChatGPT. When the service indicator is visible, the configuration is ready. Choose a model by task complexity.</p></div><figure class="screen"><img src="assets/ChatGPT.exe_20260808_212715.png" alt="ChatGPT 模型选择菜单"><figcaption class="zh">在输入框下方的模型菜单中选择模型</figcaption><figcaption class="en">Select your model from the menu below the message box</figcaption></figure></article>
+      </div></div></section>
+
+      <section id="models"><div class="wrap"><div class="section-heading"><p class="eyebrow zh">模型与价格</p><p class="eyebrow en">Models & pricing</p><h2 class="zh">为任务选择恰当的模型</h2><h2 class="en">Choose the model that fits the task</h2><p class="zh">日常对话优先使用 Terra，复杂问题和计划生成使用 Sol。Luna 多数时候不可用，GPT-5.5 与 Sol 同价，不建议选择。</p><p class="en">Use Terra for everyday work and Sol for difficult questions or planning. Luna is often unavailable. GPT-5.5 costs the same as Sol and is not recommended.</p></div><div class="models zh grid"><article class="model"><h3>GPT-5.6 Terra</h3><div class="role">日常主力</div><p>适合日常对话、写作、资料整理与中等复杂度代码任务。</p></article><article class="model"><h3>GPT-5.6 Sol</h3><div class="role">复杂任务</div><p>适合困难问题与计划生成。普通问题使用可能过度思考，也会提高成本。</p></article><article class="model"><h3>GPT-5.6 Luna</h3><div class="role">轻量任务</div><p>适合高频自动化任务，但多数时候无法使用。</p></article></div><div class="models en grid"><article class="model"><h3>GPT-5.6 Terra</h3><div class="role">Everyday work</div><p>For everyday conversations, writing, research organization, and moderately complex coding.</p></article><article class="model"><h3>GPT-5.6 Sol</h3><div class="role">Complex tasks</div><p>For difficult questions and planning. It can overthink ordinary prompts and cost more.</p></article><article class="model"><h3>GPT-5.6 Luna</h3><div class="role">Lightweight tasks</div><p>For high-volume automation, though it is often unavailable.</p></article></div><table class="price-table zh"><thead><tr><th>模型</th><th>输入 / 缓存写入</th><th>缓存读取</th><th>输出</th></tr></thead><tbody><tr><td>GPT-5.6 Sol / GPT-5.5</td><td>¥0.35 / 百万 Token</td><td>¥0.035 / 百万 Token</td><td>¥2.10 / 百万 Token</td></tr><tr><td>GPT-5.6 Terra</td><td>¥0.175 / 百万 Token</td><td>¥0.0175 / 百万 Token</td><td>¥1.05 / 百万 Token</td></tr><tr><td>GPT-5.6 Luna</td><td>¥0.07 / 百万 Token</td><td>¥0.007 / 百万 Token</td><td>¥0.42 / 百万 Token</td></tr></tbody></table><table class="price-table en"><thead><tr><th>Model</th><th>Input / cache write</th><th>Cache read</th><th>Output</th></tr></thead><tbody><tr><td>GPT-5.6 Sol / GPT-5.5</td><td>¥0.35 / 1M tokens</td><td>¥0.035 / 1M tokens</td><td>¥2.10 / 1M tokens</td></tr><tr><td>GPT-5.6 Terra</td><td>¥0.175 / 1M tokens</td><td>¥0.0175 / 1M tokens</td><td>¥1.05 / 1M tokens</td></tr><tr><td>GPT-5.6 Luna</td><td>¥0.07 / 1M tokens</td><td>¥0.007 / 1M tokens</td><td>¥0.42 / 1M tokens</td></tr></tbody></table><p class="pricing-note zh">以上按 0.07 平台计费倍率折算，仅供参考。倍率不是实时汇率，实际金额以后台标价和账单为准。</p><p class="pricing-note en">Prices use the 0.07 platform billing multiplier and are for reference only. This is not a live exchange rate. Refer to the displayed platform price and bill.</p></div></section>
+
+      <section id="status" class="walkthrough"><div class="wrap status-layout"><div><p class="eyebrow zh">通道状态</p><p class="eyebrow en">Channel status</p><h2 class="zh">先看状态，再开始任务。</h2><h2 class="en">Check the channel before you start.</h2><p class="zh">通道卡片右侧的颜色代表当前可用情况。页面会定期刷新数据，高延迟时可稍后再试。</p><p class="en">The color at the right side of a channel card shows current availability. Data refreshes periodically. Try again later when latency is high.</p><div class="legend zh grid"><div class="legend-row"><span class="indicator"></span><div><h3>绿色：可用</h3><p>服务运行正常，可直接使用。</p></div></div><div class="legend-row"><span class="indicator warn"></span><div><h3>黄色：可用但延迟高</h3><p>可以发送请求，但响应速度可能较慢。</p></div></div><div class="legend-row"><span class="indicator down"></span><div><h3>红色：不可用</h3><p>等待恢复后再尝试。</p></div></div></div><div class="legend en grid"><div class="legend-row"><span class="indicator"></span><div><h3>Green: available</h3><p>The service is operating normally.</p></div></div><div class="legend-row"><span class="indicator warn"></span><div><h3>Yellow: available with high latency</h3><p>You can send requests, but responses may be slower.</p></div></div><div class="legend-row"><span class="indicator down"></span><div><h3>Red: unavailable</h3><p>Please wait for recovery and try again.</p></div></div></div></div><figure class="screen"><img src="assets/channel-status.png" alt="通道状态页面截图"><figcaption class="zh">通道卡片显示近期可用性与延迟</figcaption><figcaption class="en">Channel cards show recent availability and latency</figcaption></figure></div></section>
+
+      <section id="faq"><div class="wrap"><div class="section-heading"><p class="eyebrow">FAQ</p><h2 class="zh">常见问题</h2><h2 class="en">Frequently asked questions</h2></div><div class="faq zh"><details><summary>在哪里下载 CC Switch？</summary><p>请前往 <a href="https://github.com/farion1231/cc-switch/releases" target="_blank" rel="noreferrer">farion1231/cc-switch Releases</a> 下载最新版本。</p></details><details><summary>为什么倍率会变化？</summary><p>倍率会随账号运营成本上下调整，通常变化不大也不频繁。特殊情况以群内通知为准。</p></details><details><summary>为什么无法连接？</summary><p>平台不面向中国大陆、香港和澳门地区的访问。请确认你满足授权测试与地区要求。</p></details><details><summary>为什么无法使用 Luna 或生图？</summary><p>Luna 默认可能关闭，是否可用请以当时的模型菜单与通道状态为准。</p></details></div><div class="faq en"><details><summary>Where can I download CC Switch?</summary><p>Download the latest release from <a href="https://github.com/farion1231/cc-switch/releases" target="_blank" rel="noreferrer">farion1231/cc-switch Releases</a>.</p></details><details><summary>Why does the multiplier change?</summary><p>The multiplier may move with account operating cost. Changes are usually small and infrequent. Refer to group announcements for exceptional cases.</p></details><details><summary>Why can I not connect?</summary><p>The platform does not provide access from mainland China, Hong Kong, or Macao. Confirm that you meet the authorized testing and regional requirements.</p></details><details><summary>Why is Luna or image generation unavailable?</summary><p>Luna may be disabled by default. Check the model menu and channel status at the time you use it.</p></details></div></div></section>
+    </main>
+    <footer class="footer"><div class="wrap footer-row"><span>Happy Homebody Soda</span><span class="zh">内部授权测试使用。<a href="mailto:dzhg@dzhg3.cc.cd">联系测试支持</a></span><span class="en">For authorized internal testing. <a href="mailto:dzhg@dzhg3.cc.cd">Contact test support</a></span></div></footer>
+    <script>
+      const toggle = document.getElementById('language-toggle');
+      toggle.addEventListener('click', () => {
+        const next = document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN';
+        document.documentElement.lang = next;
+        document.title = next === 'en' ? 'Happy Homebody Soda | Guide' : 'Happy Homebody Soda | 使用指南';
+        toggle.textContent = next === 'en' ? '中文' : 'EN';
+      });
+    </script>
+  </body>
+</html>

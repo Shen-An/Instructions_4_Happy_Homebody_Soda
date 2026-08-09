@@ -76,10 +76,12 @@
       .price-table th { color:var(--muted); font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
       .price-table td:last-child, .price-table th:last-child { text-align:right; }
       .pricing-note { margin:18px 0 0; color:var(--muted); font-size:13px; }
-      .testing-snapshot { margin-top:44px; padding-top:30px; border-top:1px solid var(--line); }
+      .testing-snapshot { display:grid; grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr); column-gap:34px; row-gap:0; margin-top:44px; padding-top:30px; border-top:1px solid var(--line); }
       .testing-snapshot h3 { margin:0; font-size:22px; }
       .testing-snapshot > p { margin:7px 0 0; color:var(--muted); font-size:14px; }
-      .usage-chart { margin:24px 0 0; overflow:hidden; border:1px solid var(--line); border-radius:10px; background:#fff; }
+      .testing-snapshot h3, .testing-snapshot > p { grid-column:1 / -1; }
+      .testing-snapshot .snapshot-grid { grid-column:1; grid-template-columns:1fr; align-content:start; margin:24px 0 0; }
+      .usage-chart { grid-column:2; grid-row:3; align-self:start; margin:24px 0 0; overflow:hidden; border:1px solid var(--line); border-radius:10px; background:#fff; }
       .usage-chart img { display:block; width:100%; height:auto; }
       .usage-chart figcaption { padding:10px 14px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
       .snapshot-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:22px; }
@@ -105,7 +107,7 @@
       .footer { background:#102e31; color:#d4e5e4; padding:34px 0; }
       .footer-row { display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:13px; }
       .footer a { color:#fff; text-decoration:underline; text-underline-offset:3px; }
-      @media (max-width:900px) { .nav-links { display:none; } .hero { padding:52px 0; } .hero-grid, .status-layout { grid-template-columns:1fr; gap:34px; } .hero-media { max-width:680px; } section { padding:64px 0; } .process, .models, .snapshot-grid { grid-template-columns:1fr; } .model { border-right:0; border-bottom:1px solid var(--line); } .model:last-child { border-bottom:0; } .step, .step:nth-child(even) { grid-template-columns:1fr; gap:22px; } .step:nth-child(even) .step-copy, .step:nth-child(even) .screen { order:initial; } .price-table { font-size:12px; } .price-table th, .price-table td { padding:10px 5px; } }
+      @media (max-width:900px) { .nav-links { display:none; } .hero { padding:52px 0; } .hero-grid, .status-layout, .testing-snapshot { grid-template-columns:1fr; gap:34px; } .hero-media { max-width:680px; } section { padding:64px 0; } .process, .models, .snapshot-grid { grid-template-columns:1fr; } .testing-snapshot .snapshot-grid, .testing-snapshot .usage-chart { grid-column:auto; grid-row:auto; margin-top:0; } .model { border-right:0; border-bottom:1px solid var(--line); } .model:last-child { border-bottom:0; } .step, .step:nth-child(even) { grid-template-columns:1fr; gap:22px; } .step:nth-child(even) .step-copy, .step:nth-child(even) .screen { order:initial; } .price-table { font-size:12px; } .price-table th, .price-table td { padding:10px 5px; } }
       @media (max-width:480px) { .wrap { width:min(100% - 28px,1240px); } h1 { font-size:42px; } .hero-copy { font-size:16px; } .hero-actions .button { width:100%; } .notice { padding:18px; } .footer-row { align-items:flex-start; flex-direction:column; } }
       @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
     </style>

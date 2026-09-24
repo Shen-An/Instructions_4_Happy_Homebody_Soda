@@ -73,10 +73,11 @@
       .model h3 { margin:0; font-size:22px; }
       .model .role { margin:3px 0 15px; color:var(--accent); font-size:13px; font-weight:700; }
       .model p { margin:0; color:var(--muted); font-size:14px; }
-      .price-table { display:block; width:100%; overflow-x:auto; border-collapse:collapse; margin-top:38px; font-size:14px; white-space:nowrap; }
-      .price-table th, .price-table td { text-align:right; padding:14px 12px; border-bottom:1px solid var(--line); }
+      .price-table { width:100%; border-collapse:collapse; margin-top:38px; font-size:14px; table-layout:fixed; }
+      .price-table th, .price-table td { text-align:right; padding:14px 12px; border-bottom:1px solid var(--line); overflow-wrap:anywhere; }
       .price-table th { color:var(--muted); font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
-      .price-table th:first-child, .price-table td:first-child { text-align:left; }
+      .price-table th:first-child, .price-table td:first-child { text-align:left; width:32%; }
+      .price-table th:not(:first-child), .price-table td:not(:first-child) { width:17%; }
       .pricing-note { margin:18px 0 0; color:var(--muted); font-size:13px; }
       .price-table .cat td { background:var(--accent-pale); color:var(--accent); font-weight:800; font-size:12px; letter-spacing:.06em; text-transform:uppercase; text-align:left; }
       .price-table .tbd td { color:var(--muted); font-style:italic; }
